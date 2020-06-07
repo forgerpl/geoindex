@@ -1,0 +1,38 @@
+[package]
+name = "geoindex"
+version = "0.1.0"
+authors = ["Jacek Całusiński <forger@forger.pl>"]
+edition = "2018"
+
+[dependencies]
+hashbrown = "0.7.2"
+rstar = "0.8.0"
+num-traits = "0.2.11"
+
+[dependencies.geo]
+optional = false
+version = "0.13.0"
+features = ["serde"]
+
+[dependencies.geo-types]
+optional = false
+version = "0.5.0"
+features = ["serde"]
+
+[dependencies.serde]
+optional = true
+version = "1.0.111"
+features = ["serde_derive"]
+
+[dev-dependencies]
+criterion = "0.3.2"
+
+[features]
+default = ["serialize"]
+
+serialize = ["geo/serde", "geo-types/serde", "rstar/serde", "serde"]
+
+[[bench]]
+name = "lookup"
+harness = false
+
